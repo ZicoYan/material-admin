@@ -19,13 +19,13 @@ const useStyles = makeStyles(() => ({
 const SideMenu: React.FC<ISideMenuProps> = ({ menu }) => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <aside className={classes.root}>
       <List aria-label="side menu" component="nav">
         {menu.map(menuItem => (
           <SideMenuItem item={menuItem} key={menuItem.name} />
         ))}
       </List>
-    </div>
+    </aside>
   );
 };
 

@@ -7,7 +7,10 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Theme, makeStyles } from '@material-ui/core/styles';
 
-import { Menu as MenuIcon, AccountCircle as AccountCircleIcon } from '@material-ui/icons';
+import {
+  Menu as MenuIcon,
+  AccountCircle as AccountCircleIcon,
+} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,48 +29,51 @@ interface ITopBarProps {
 }
 
 const TopBar: React.FC<ITopBarProps> = props => {
-  const [userMenuAnchorEl, setUserMenuAnchorEl] = useState<null | HTMLElement>(null);
+  const [userMenuAnchorEl, setUserMenuAnchorEl] = useState<null | HTMLElement>(
+    null,
+  );
   const classes = useStyles();
-  const onMenuToggle = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
-    setUserMenuAnchorEl(current => {
-      if (current) {
-        return null;
-      }
-      return event.currentTarget;
-    });
-  }, []);
+  const onMenuToggle = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      setUserMenuAnchorEl(current => {
+        if (current) {
+          return null;
+        }
+        return event.currentTarget;
+      });
+    },
+    [],
+  );
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="toggle menu"
-            onClick={props.onMenuToggle}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            TODO: 面包屑
-          </Typography>
-          <IconButton aria-label="user" color="inherit" onClick={onMenuToggle}>
-            <AccountCircleIcon />
-          </IconButton>
-          <Menu
-            anchorEl={userMenuAnchorEl}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            getContentAnchorEl={null}
-            open={!!userMenuAnchorEl}
-            onClose={onMenuToggle}
-            keepMounted
-          >
-            <MenuItem>注销</MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="toggle menu"
+          onClick={props.onMenuToggle}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" className={classes.title}>
+          TODO: 面包屑
+        </Typography>
+        <IconButton aria-label="user" color="inherit" onClick={onMenuToggle}>
+          <AccountCircleIcon />
+        </IconButton>
+        <Menu
+          anchorEl={userMenuAnchorEl}
+          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          getContentAnchorEl={null}
+          open={!!userMenuAnchorEl}
+          onClose={onMenuToggle}
+          keepMounted
+        >
+          <MenuItem>注销</MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 };
 
