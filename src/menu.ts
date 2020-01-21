@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Dashboard, People } from '@material-ui/icons';
+import { Dashboard, Event } from '@material-ui/icons';
 import { IMenuItem } from './types/menu';
 
 const menu: IMenuItem[] = [
@@ -10,14 +10,14 @@ const menu: IMenuItem[] = [
     path: ['/', '/dashboard'],
   },
   {
-    name: '员工',
-    icon: People,
-    path: '/employee',
+    name: '订单',
+    icon: Event,
+    path: '/order',
     children: [
       {
-        name: '员工列表',
+        name: '订单列表',
         path: '/list',
-        icon: People,
+        icon: Event,
         component: lazy(() => import('./pages/Employee/List')),
       },
     ],

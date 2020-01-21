@@ -3,6 +3,7 @@ import TopBar from './TopBar';
 import { CssBaseline, makeStyles, Theme } from '@material-ui/core';
 import { IMenuItem } from '../../types/menu';
 import SideMenu from './SideMenu';
+import useBoolean from '../../hooks/useBoolean';
 
 const useStyles = makeStyles((theme: Theme) => ({
   mainContent: {
@@ -16,15 +17,17 @@ interface IBasicLayoutProps {
 }
 
 const BasicLayout: React.FC<IBasicLayoutProps> = props => {
+  const {
+    value: isSideMenuExpended,
+    toggle: onSideMenuExpendToggle,
+  } = useBoolean(false);
   const classes = useStyles();
   return (
     <>
       <CssBaseline />
-      <TopBar onMenuToggle={() => console.log('menu toggle')} />
-      <main
-        className={classes.mainContent}
-      >
-        <SideMenu isExpended={true} menu={props.menu} />
+      <TopBar onMenuToggle={onSideMenuExpendToggle} />
+      <main className={classes.mainContent}>
+        <SideMenu isExpended={isSideMenuExpended} menu={props.menu} />
         Hello
       </main>
     </>

@@ -10,19 +10,25 @@ interface ISideMenuProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {
+  root: ({ isExpended }: { isExpended: boolean }) => ({
     width: '100%',
-    maxWidth: 240,
-  },
+    maxWidth: isExpended ? 240 : 56,
+    overflowX: 'hidden',
+    transition: 'max-width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms',
+  }),
 }));
 
-const SideMenu: React.FC<ISideMenuProps> = ({ menu }) => {
-  const classes = useStyles();
+const SideMenu: React.FC<ISideMenuProps> = ({ menu, isExpended }) => {
+  const classes = useStyles({ isExpended });
   return (
     <aside className={classes.root}>
       <List aria-label="side menu" component="nav">
         {menu.map(menuItem => (
-          <SideMenuItem item={menuItem} key={menuItem.name} />
+          <SideMenuItem
+            isSideMenuExpended={isExpended}
+            item={menuItem}
+            key={menuItem.name}
+          />
         ))}
       </List>
     </aside>
