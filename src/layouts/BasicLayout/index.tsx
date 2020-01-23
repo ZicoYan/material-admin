@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     minHeight: 'calc(100vh - 64px)',
     display: 'flex',
   },
+  content: {
+    padding: theme.spacing(1, 3)
+  }
 }));
 
 interface IBasicLayoutProps {
@@ -61,7 +64,9 @@ const BasicLayout: React.FC<IBasicLayoutProps> = props => {
       <TopBar onMenuToggle={onSideMenuExpendToggle} />
       <main className={classes.mainContent}>
         <SideMenu isExpended={isSideMenuExpended} menu={props.menu} />
-        <Switch>{props.menu.map(item => renderRoute(item))}</Switch>
+        <div className={classes.content}>
+          <Switch>{props.menu.map(item => renderRoute(item))}</Switch>
+        </div>
       </main>
     </>
   );

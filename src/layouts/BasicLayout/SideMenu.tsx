@@ -1,7 +1,7 @@
 import React from 'react';
 import { IMenuItem } from '../../types/menu';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { List } from '@material-ui/core';
+import { List, Paper } from '@material-ui/core';
 import SideMenuItem from './SideMenuItem';
 
 interface ISideMenuProps {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
 const SideMenu: React.FC<ISideMenuProps> = ({ menu, isExpended }) => {
   const classes = useStyles({ isExpended });
   return (
-    <aside className={classes.root}>
+    <Paper elevation={6} className={classes.root}>
       <List aria-label="side menu" component="nav">
         {menu.map(menuItem => (
           <SideMenuItem
@@ -31,7 +31,7 @@ const SideMenu: React.FC<ISideMenuProps> = ({ menu, isExpended }) => {
           />
         ))}
       </List>
-    </aside>
+    </Paper>
   );
 };
 
